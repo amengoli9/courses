@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestaurantMenu.Domain\RestaurantMenu.Domain.csproj" />
-    <ProjectReference Include="..\RestaurantMenu.Application\RestaurantMenu.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,25 +9,16 @@ Il progetto segue il pattern dell'architettura esagonale per separare la logica 
 ```
 RestaurantMenu/
 ├── src/
-│   ├── RestaurantMenu.Domain/          # Core - Entità di dominio e interfacce (Ports)
+│   ├── RestaurantMenu.Domain/          # Core - Entità, servizi e interfacce (Ports)
 │   │   ├── Entities/
 │   │   │   └── MenuItem.cs
 │   │   ├── Enums/
 │   │   │   └── MenuCategory.cs
-│   │   └── Repositories/
-│   │       └── IMenuItemRepository.cs
-│   │
-│   ├── RestaurantMenu.Application/     # Use Cases - Logica applicativa
-│   │   ├── DTOs/
-│   │   │   ├── MenuItemDto.cs
-│   │   │   ├── CreateMenuItemRequest.cs
-│   │   │   └── UpdateMenuItemRequest.cs
-│   │   ├── Services/
-│   │   │   ├── IMenuItemService.cs
-│   │   │   └── MenuItemService.cs
-│   │   └── Validators/
-│   │       ├── CreateMenuItemRequestValidator.cs
-│   │       └── UpdateMenuItemRequestValidator.cs
+│   │   ├── Repositories/
+│   │   │   └── IMenuItemRepository.cs
+│   │   └── Services/
+│   │       ├── IMenuItemService.cs
+│   │       └── MenuItemService.cs
 │   │
 │   ├── RestaurantMenu.Infrastructure/  # Adapters - Implementazioni concrete
 │   │   ├── Data/
@@ -38,9 +29,16 @@ RestaurantMenu/
 │   │   └── Repositories/
 │   │       └── MenuItemRepository.cs
 │   │
-│   └── RestaurantMenu.WebApi/          # Entry Point - API Controller
+│   └── RestaurantMenu.WebApi/          # Entry Point - Controllers e DTOs
 │       ├── Controllers/
 │       │   └── MenuController.cs
+│       ├── DTOs/
+│       │   ├── MenuItemDto.cs
+│       │   ├── CreateMenuItemRequest.cs
+│       │   └── UpdateMenuItemRequest.cs
+│       ├── Validators/
+│       │   ├── CreateMenuItemRequestValidator.cs
+│       │   └── UpdateMenuItemRequestValidator.cs
 │       ├── Program.cs
 │       └── appsettings.json
 │
@@ -50,18 +48,18 @@ RestaurantMenu/
 
 ### Layers Spiegati
 
-- **Domain Layer**: Contiene le entità di business e le interfacce (ports). Non ha dipendenze esterne.
-- **Application Layer**: Contiene i use case e la logica applicativa. Dipende solo dal Domain.
+- **Domain Layer**: Contiene le entità di business, i servizi di dominio e le interfacce (ports). Non ha dipendenze esterne.
 - **Infrastructure Layer**: Implementa i ports definiti nel Domain (adapters). Contiene EF Core, repository, database.
-- **WebApi Layer**: Entry point dell'applicazione. Contiene controller, configurazione, OpenTelemetry.
+- **WebApi Layer**: Entry point dell'applicazione. Contiene controller, DTOs, validators, configurazione e OpenTelemetry.
 
 ## ✨ Caratteristiche
 
 - ✅ **Architettura Esagonale** - Separazione chiara tra business logic e infrastruttura
+- ✅ **Domain-Driven Design** - Servizi e logica di business nel Domain layer
 - ✅ **REST API** - Endpoint completi per CRUD operations
 - ✅ **PostgreSQL** - Database relazionale con Entity Framework Core
 - ✅ **OpenTelemetry** - Strumentazione completa per traces, metrics e logging
-- ✅ **FluentValidation** - Validazione delle richieste
+- ✅ **FluentValidation** - Validazione delle richieste nel layer WebApi
 - ✅ **Swagger/OpenAPI** - Documentazione API interattiva
 - ✅ **Docker Compose** - Configurazione per PostgreSQL, Jaeger e pgAdmin
 - ✅ **Health Checks** - Monitoraggio dello stato dell'applicazione
@@ -323,9 +321,9 @@ Nel file `Program.cs`, decommenta:
 })
 ```
 
-## 📦 Pacchetti OpenTelemetry
+## 📦 Pacchetti Utilizzati
 
-Il progetto utilizza OpenTelemetry v1.13.0:
+### OpenTelemetry (v1.13.0)
 
 - `OpenTelemetry` (1.13.0)
 - `OpenTelemetry.Exporter.Console` (1.13.0)
@@ -335,6 +333,13 @@ Il progetto utilizza OpenTelemetry v1.13.0:
 - `OpenTelemetry.Instrumentation.Http` (1.13.0)
 - `OpenTelemetry.Instrumentation.Runtime` (1.13.0)
 - `OpenTelemetry.Instrumentation.EntityFrameworkCore` (1.0.0-beta.12)
+
+### Altri Pacchetti
+
+- `Entity Framework Core` (8.0.0)
+- `Npgsql.EntityFrameworkCore.PostgreSQL` (8.0.0)
+- `FluentValidation` (11.9.0)
+- `Swashbuckle.AspNetCore` (6.5.0)
 
 ## 🏛️ Principi dell'Architettura Esagonale
 
@@ -347,16 +352,31 @@ public interface IMenuItemRepository
     Task<MenuItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     // ... altri metodi
 }
+
+public interface IMenuItemService
+{
+    Task<MenuItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    // ... altri metodi
+}
 ```
 
 ### Adapters (Implementazioni)
 
-Implementati nell'**Infrastructure Layer**:
+**Repository** implementato nell'**Infrastructure Layer**:
 ```csharp
 public class MenuItemRepository : IMenuItemRepository
 {
     private readonly RestaurantDbContext _context;
     // ... implementazione con EF Core
+}
+```
+
+**Service** implementato nel **Domain Layer**:
+```csharp
+public class MenuItemService : IMenuItemService
+{
+    private readonly IMenuItemRepository _repository;
+    // ... logica di business
 }
 ```
 
@@ -368,12 +388,27 @@ builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
 builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 ```
 
+### DTOs e Mapping
+
+I **DTOs** sono nel **WebApi Layer** e vengono mappati alle entità nel controller:
+```csharp
+private static MenuItemDto MapToDto(MenuItem entity)
+{
+    return new MenuItemDto(
+        entity.Id,
+        entity.Name,
+        // ... altri campi
+    );
+}
+```
+
 ### Vantaggi
 
 - ✅ **Testabilità**: Il core business è testabile senza dipendenze esterne
 - ✅ **Manutenibilità**: Ogni layer ha responsabilità chiare
 - ✅ **Sostituibilità**: Facile sostituire implementazioni (es. cambiare DB da PostgreSQL a MongoDB)
 - ✅ **Indipendenza**: Il dominio non dipende da framework o tecnologie specifiche
+- ✅ **Semplicità**: Meno layer = meno complessità, logica di business centralizzata nel Domain
 
 ## 🛠️ Comandi Utili
 

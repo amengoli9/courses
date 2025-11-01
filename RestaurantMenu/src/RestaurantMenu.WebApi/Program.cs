@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using RestaurantMenu.Application.Services;
+using RestaurantMenu.Domain.Services;
 using RestaurantMenu.Domain.Repositories;
 using RestaurantMenu.Infrastructure.Data;
 using RestaurantMenu.Infrastructure.Repositories;

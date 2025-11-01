@@ -1,8 +1,8 @@
 using RestaurantMenu.Domain.Enums;
 
-namespace RestaurantMenu.Application.DTOs;
+namespace RestaurantMenu.WebApi.DTOs;
 
-public record UpdateMenuItemRequest(
+public record CreateMenuItemRequest(
     string Name,
     string Description,
     decimal Price,

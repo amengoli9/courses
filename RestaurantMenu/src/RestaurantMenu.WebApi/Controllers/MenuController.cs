@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using RestaurantMenu.Application.DTOs;
-using RestaurantMenu.Application.Services;
-using RestaurantMenu.Application.Validators;
+using RestaurantMenu.WebApi.DTOs;
+using RestaurantMenu.WebApi.Validators;
+using RestaurantMenu.Domain.Services;
+using RestaurantMenu.Domain.Entities;
 using RestaurantMenu.Domain.Enums;
 using System.Diagnostics;
 
@@ -34,7 +35,7 @@ public class MenuController : ControllerBase
         _logger.LogInformation("Fetching all menu items");
 
         var items = await _menuItemService.GetAllAsync(cancellationToken);
-        var itemsList = items.ToList();
+        var itemsList = items.Select(MapToDto).ToList();
 
         activity?.SetTag("items.count", itemsList.Count);
         _logger.LogInformation("Retrieved {Count} menu items", itemsList.Count);
@@ -68,7 +69,7 @@ public class MenuController : ControllerBase
         activity?.SetTag("menu_item.name", item.Name);
         activity?.SetTag("menu_item.category", item.Category.ToString());
 
-        return Ok(item);
+        return Ok(MapToDto(item));
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class MenuController : ControllerBase
         _logger.LogInformation("Fetching available menu items");
 
         var items = await _menuItemService.GetAvailableAsync(cancellationToken);
-        var itemsList = items.ToList();
+        var itemsList = items.Select(MapToDto).ToList();
 
         activity?.SetTag("items.count", itemsList.Count);
 
@@ -104,7 +105,7 @@ public class MenuController : ControllerBase
         _logger.LogInformation("Fetching menu items for category: {Category}", category);
 
         var items = await _menuItemService.GetByCategoryAsync(category, cancellationToken);
-        var itemsList = items.ToList();
+        var itemsList = items.Select(MapToDto).ToList();
 
         activity?.SetTag("items.count", itemsList.Count);
 
@@ -137,12 +138,24 @@ public class MenuController : ControllerBase
 
         _logger.LogInformation("Creating new menu item: {Name}", request.Name);
 
-        var created = await _menuItemService.CreateAsync(request, cancellationToken);
+        var menuItem = new MenuItem
+        {
+            Name = request.Name,
+            Description = request.Description,
+            Price = request.Price,
+            Category = request.Category,
+            IsAvailable = request.IsAvailable,
+            Allergens = request.Allergens ?? new List<string>(),
+            ImageUrl = request.ImageUrl,
+            PreparationTimeMinutes = request.PreparationTimeMinutes
+        };
+
+        var created = await _menuItemService.CreateAsync(menuItem, cancellationToken);
 
         activity?.SetTag("menu_item.id", created.Id.ToString());
         _logger.LogInformation("Menu item created successfully with ID: {Id}", created.Id);
 
-        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, MapToDto(created));
     }
 
     /// <summary>
@@ -171,7 +184,19 @@ public class MenuController : ControllerBase
 
         _logger.LogInformation("Updating menu item with ID: {Id}", id);
 
-        var updated = await _menuItemService.UpdateAsync(id, request, cancellationToken);
+        var menuItem = new MenuItem
+        {
+            Name = request.Name,
+            Description = request.Description,
+            Price = request.Price,
+            Category = request.Category,
+            IsAvailable = request.IsAvailable,
+            Allergens = request.Allergens ?? new List<string>(),
+            ImageUrl = request.ImageUrl,
+            PreparationTimeMinutes = request.PreparationTimeMinutes
+        };
+
+        var updated = await _menuItemService.UpdateAsync(id, menuItem, cancellationToken);
 
         if (updated is null)
         {
@@ -183,7 +208,7 @@ public class MenuController : ControllerBase
         activity?.SetTag("updated", true);
         _logger.LogInformation("Menu item {Id} updated successfully", id);
 
-        return Ok(updated);
+        return Ok(MapToDto(updated));
     }
 
     /// <summary>
@@ -212,5 +237,22 @@ public class MenuController : ControllerBase
         _logger.LogInformation("Menu item {Id} deleted successfully", id);
 
         return NoContent();
+    }
+
+    private static MenuItemDto MapToDto(MenuItem entity)
+    {
+        return new MenuItemDto(
+            entity.Id,
+            entity.Name,
+            entity.Description,
+            entity.Price,
+            entity.Category,
+            entity.IsAvailable,
+            entity.Allergens,
+            entity.ImageUrl,
+            entity.PreparationTimeMinutes,
+            entity.CreatedAt,
+            entity.UpdatedAt
+        );
     }
 }

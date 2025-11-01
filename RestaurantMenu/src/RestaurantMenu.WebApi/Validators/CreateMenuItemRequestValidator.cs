@@ -1,7 +1,7 @@
 using FluentValidation;
-using RestaurantMenu.Application.DTOs;
+using RestaurantMenu.WebApi.DTOs;
 
-namespace RestaurantMenu.Application.Validators;
+namespace RestaurantMenu.WebApi.Validators;
 
 public class CreateMenuItemRequestValidator : AbstractValidator<CreateMenuItemRequest>
 {
