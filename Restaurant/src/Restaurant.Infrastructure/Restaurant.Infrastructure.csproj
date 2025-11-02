@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Domain\Restaurant.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Common.Logging\src\Common.Logging\Common.Logging.csproj" />
   </ItemGroup>
 
   <ItemGroup>

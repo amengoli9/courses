@@ -1,6 +1,8 @@
 using Microsoft.Extensions.Logging;
 using Restaurant.Domain.Services;
 using System.Net.Http.Json;
+using System.Diagnostics;
+using Common.Logging;
 
 namespace Restaurant.Infrastructure.Services;
 
@@ -17,73 +19,126 @@ public class KitchenApiService : IKitchenApiService
 
     public async Task<IEnumerable<MenuItemDto>> GetMenuAsync(CancellationToken cancellationToken = default)
     {
+        var url = "/api/menu";
+        var traceId = Activity.Current?.TraceId.ToString() ?? "no-trace";
+        var stopwatch = Stopwatch.StartNew();
+
         try
         {
-            _logger.LogInformation("Calling Kitchen API to get full menu");
+            // Source-generated logging per chiamata microservizio
+            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetMenu", traceId);
 
-            var response = await _httpClient.GetAsync("/api/menu", cancellationToken);
+            var response = await _httpClient.GetAsync(url, cancellationToken);
+            stopwatch.Stop();
+
+            MicroserviceLogMessages.MicroserviceCallCompleted(
+                _logger,
+                "Kitchen",
+                "GetMenu",
+                (int)response.StatusCode,
+                stopwatch.ElapsedMilliseconds);
+
             response.EnsureSuccessStatusCode();
 
             var menu = await response.Content.ReadFromJsonAsync<IEnumerable<MenuItemDto>>(cancellationToken);
-
-            _logger.LogInformation("Retrieved {Count} menu items from Kitchen API", menu?.Count() ?? 0);
 
             return menu ?? Enumerable.Empty<MenuItemDto>();
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, "Error calling Kitchen API to get menu");
+            MicroserviceLogMessages.MicroserviceCallFailed(
+                _logger,
+                ex,
+                "Kitchen",
+                "GetMenu",
+                ex.Message);
             throw;
         }
     }
 
     public async Task<MenuItemDto?> GetMenuItemByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
+        var url = $"/api/menu/{id}";
+        var traceId = Activity.Current?.TraceId.ToString() ?? "no-trace";
+        var stopwatch = Stopwatch.StartNew();
+
         try
         {
-            _logger.LogInformation("Calling Kitchen API to get menu item {MenuItemId}", id);
+            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetMenuItemById", traceId);
 
-            var response = await _httpClient.GetAsync($"/api/menu/{id}", cancellationToken);
+            var response = await _httpClient.GetAsync(url, cancellationToken);
+            stopwatch.Stop();
 
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                _logger.LogWarning("Menu item {MenuItemId} not found in Kitchen API", id);
+                MicroserviceLogMessages.MicroserviceCallCompleted(
+                    _logger,
+                    "Kitchen",
+                    "GetMenuItemById",
+                    404,
+                    stopwatch.ElapsedMilliseconds);
                 return null;
             }
+
+            MicroserviceLogMessages.MicroserviceCallCompleted(
+                _logger,
+                "Kitchen",
+                "GetMenuItemById",
+                (int)response.StatusCode,
+                stopwatch.ElapsedMilliseconds);
 
             response.EnsureSuccessStatusCode();
 
             var menuItem = await response.Content.ReadFromJsonAsync<MenuItemDto>(cancellationToken);
 
-            _logger.LogInformation("Retrieved menu item {MenuItemId} from Kitchen API", id);
-
             return menuItem;
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, "Error calling Kitchen API to get menu item {MenuItemId}", id);
+            MicroserviceLogMessages.MicroserviceCallFailed(
+                _logger,
+                ex,
+                "Kitchen",
+                "GetMenuItemById",
+                ex.Message);
             throw;
         }
     }
 
     public async Task<IEnumerable<MenuItemDto>> GetAvailableMenuAsync(CancellationToken cancellationToken = default)
     {
+        var url = "/api/menu/available";
+        var traceId = Activity.Current?.TraceId.ToString() ?? "no-trace";
+        var stopwatch = Stopwatch.StartNew();
+
         try
         {
-            _logger.LogInformation("Calling Kitchen API to get available menu");
+            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetAvailableMenu", traceId);
 
-            var response = await _httpClient.GetAsync("/api/menu/available", cancellationToken);
+            var response = await _httpClient.GetAsync(url, cancellationToken);
+            stopwatch.Stop();
+
+            MicroserviceLogMessages.MicroserviceCallCompleted(
+                _logger,
+                "Kitchen",
+                "GetAvailableMenu",
+                (int)response.StatusCode,
+                stopwatch.ElapsedMilliseconds);
+
             response.EnsureSuccessStatusCode();
 
             var menu = await response.Content.ReadFromJsonAsync<IEnumerable<MenuItemDto>>(cancellationToken);
-
-            _logger.LogInformation("Retrieved {Count} available menu items from Kitchen API", menu?.Count() ?? 0);
 
             return menu ?? Enumerable.Empty<MenuItemDto>();
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, "Error calling Kitchen API to get available menu");
+            MicroserviceLogMessages.MicroserviceCallFailed(
+                _logger,
+                ex,
+                "Kitchen",
+                "GetAvailableMenu",
+                ex.Message);
             throw;
         }
     }
