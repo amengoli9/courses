@@ -43,22 +43,22 @@ public class MenuItemService : IMenuItemService
         var entityId = menuItem.Id.ToString();
         var stopwatch = Stopwatch.StartNew();
 
-        BusinessLogMessages.CreatingEntity(_logger, "MenuItem", entityId);
-        BusinessLogMessages.ServiceOperationStarted(_logger, "MenuItemService", "CreateAsync");
+        _logger.EntityCreating("MenuItem", entityId);
+        _logger.ServiceOperationStarted("MenuItemService", "CreateAsync");
 
         try
         {
             var result = await _repository.AddAsync(menuItem, cancellationToken);
             stopwatch.Stop();
 
-            BusinessLogMessages.EntityCreated(_logger, "MenuItem", entityId);
-            BusinessLogMessages.ServiceOperationCompleted(_logger, "MenuItemService", "CreateAsync", stopwatch.ElapsedMilliseconds);
+            _logger.EntityCreated("MenuItem", entityId);
+            _logger.ServiceOperationCompleted("MenuItemService", "CreateAsync", stopwatch.ElapsedMilliseconds);
 
             return result;
         }
         catch (Exception ex)
         {
-            BusinessLogMessages.BusinessOperationFailed(_logger, ex, "CreateAsync", "MenuItem", entityId);
+            _logger.ServiceOperationFailed(ex, "MenuItemService", "CreateAsync");
             throw;
         }
     }
@@ -68,12 +68,12 @@ public class MenuItemService : IMenuItemService
         var entityId = id.ToString();
         var stopwatch = Stopwatch.StartNew();
 
-        BusinessLogMessages.UpdatingEntity(_logger, "MenuItem", entityId);
+        _logger.EntityUpdating("MenuItem", entityId);
 
         var existing = await _repository.GetByIdAsync(id, cancellationToken);
         if (existing is null)
         {
-            BusinessLogMessages.EntityNotFound(_logger, "MenuItem", entityId);
+            _logger.EntityNotFound("MenuItem", entityId);
             return null;
         }
 
@@ -92,14 +92,14 @@ public class MenuItemService : IMenuItemService
             var result = await _repository.UpdateAsync(existing, cancellationToken);
             stopwatch.Stop();
 
-            BusinessLogMessages.EntityUpdated(_logger, "MenuItem", entityId);
-            BusinessLogMessages.ServiceOperationCompleted(_logger, "MenuItemService", "UpdateAsync", stopwatch.ElapsedMilliseconds);
+            _logger.EntityUpdated("MenuItem", entityId);
+            _logger.ServiceOperationCompleted("MenuItemService", "UpdateAsync", stopwatch.ElapsedMilliseconds);
 
             return result;
         }
         catch (Exception ex)
         {
-            BusinessLogMessages.BusinessOperationFailed(_logger, ex, "UpdateAsync", "MenuItem", entityId);
+            _logger.ServiceOperationFailed(ex, "MenuItemService", "UpdateAsync");
             throw;
         }
     }
@@ -109,7 +109,7 @@ public class MenuItemService : IMenuItemService
         var entityId = id.ToString();
         var stopwatch = Stopwatch.StartNew();
 
-        BusinessLogMessages.DeletingEntity(_logger, "MenuItem", entityId);
+        _logger.EntityDeleting("MenuItem", entityId);
 
         try
         {
@@ -118,19 +118,19 @@ public class MenuItemService : IMenuItemService
 
             if (result)
             {
-                BusinessLogMessages.EntityDeleted(_logger, "MenuItem", entityId);
-                BusinessLogMessages.ServiceOperationCompleted(_logger, "MenuItemService", "DeleteAsync", stopwatch.ElapsedMilliseconds);
+                _logger.EntityDeleted("MenuItem", entityId);
+                _logger.ServiceOperationCompleted("MenuItemService", "DeleteAsync", stopwatch.ElapsedMilliseconds);
             }
             else
             {
-                BusinessLogMessages.EntityNotFound(_logger, "MenuItem", entityId);
+                _logger.EntityNotFound("MenuItem", entityId);
             }
 
             return result;
         }
         catch (Exception ex)
         {
-            BusinessLogMessages.BusinessOperationFailed(_logger, ex, "DeleteAsync", "MenuItem", entityId);
+            _logger.ServiceOperationFailed(ex, "MenuItemService", "DeleteAsync");
             throw;
         }
     }

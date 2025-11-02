@@ -25,14 +25,13 @@ public class KitchenApiService : IKitchenApiService
 
         try
         {
-            // Source-generated logging per chiamata microservizio
-            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetMenu", traceId);
+            // Extension method source-generated su ILogger
+            _logger.CallingMicroservice("Kitchen", "GetMenu", traceId);
 
             var response = await _httpClient.GetAsync(url, cancellationToken);
             stopwatch.Stop();
 
-            MicroserviceLogMessages.MicroserviceCallCompleted(
-                _logger,
+            _logger.MicroserviceCallCompleted(
                 "Kitchen",
                 "GetMenu",
                 (int)response.StatusCode,
@@ -46,12 +45,7 @@ public class KitchenApiService : IKitchenApiService
         }
         catch (HttpRequestException ex)
         {
-            MicroserviceLogMessages.MicroserviceCallFailed(
-                _logger,
-                ex,
-                "Kitchen",
-                "GetMenu",
-                ex.Message);
+            _logger.MicroserviceCallFailed(ex, "Kitchen", "GetMenu", ex.Message);
             throw;
         }
     }
@@ -64,15 +58,14 @@ public class KitchenApiService : IKitchenApiService
 
         try
         {
-            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetMenuItemById", traceId);
+            _logger.CallingMicroservice("Kitchen", "GetMenuItemById", traceId);
 
             var response = await _httpClient.GetAsync(url, cancellationToken);
             stopwatch.Stop();
 
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                MicroserviceLogMessages.MicroserviceCallCompleted(
-                    _logger,
+                _logger.MicroserviceCallCompleted(
                     "Kitchen",
                     "GetMenuItemById",
                     404,
@@ -80,8 +73,7 @@ public class KitchenApiService : IKitchenApiService
                 return null;
             }
 
-            MicroserviceLogMessages.MicroserviceCallCompleted(
-                _logger,
+            _logger.MicroserviceCallCompleted(
                 "Kitchen",
                 "GetMenuItemById",
                 (int)response.StatusCode,
@@ -95,12 +87,7 @@ public class KitchenApiService : IKitchenApiService
         }
         catch (HttpRequestException ex)
         {
-            MicroserviceLogMessages.MicroserviceCallFailed(
-                _logger,
-                ex,
-                "Kitchen",
-                "GetMenuItemById",
-                ex.Message);
+            _logger.MicroserviceCallFailed(ex, "Kitchen", "GetMenuItemById", ex.Message);
             throw;
         }
     }
@@ -113,13 +100,12 @@ public class KitchenApiService : IKitchenApiService
 
         try
         {
-            MicroserviceLogMessages.CallingMicroservice(_logger, "Kitchen", "GetAvailableMenu", traceId);
+            _logger.CallingMicroservice("Kitchen", "GetAvailableMenu", traceId);
 
             var response = await _httpClient.GetAsync(url, cancellationToken);
             stopwatch.Stop();
 
-            MicroserviceLogMessages.MicroserviceCallCompleted(
-                _logger,
+            _logger.MicroserviceCallCompleted(
                 "Kitchen",
                 "GetAvailableMenu",
                 (int)response.StatusCode,
@@ -133,12 +119,7 @@ public class KitchenApiService : IKitchenApiService
         }
         catch (HttpRequestException ex)
         {
-            MicroserviceLogMessages.MicroserviceCallFailed(
-                _logger,
-                ex,
-                "Kitchen",
-                "GetAvailableMenu",
-                ex.Message);
+            _logger.MicroserviceCallFailed(ex, "Kitchen", "GetAvailableMenu", ex.Message);
             throw;
         }
     }
