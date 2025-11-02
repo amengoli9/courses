@@ -6,6 +6,7 @@ using Restaurant.Domain.Repositories;
 using Restaurant.Domain.Services;
 using Restaurant.Infrastructure.Data;
 using Restaurant.Infrastructure.Repositories;
+using Restaurant.Infrastructure.Services;
 using Serilog;
 using Serilog.Events;
 using System.Diagnostics;
@@ -76,6 +77,14 @@ try
     builder.Services.AddScoped<ITableService, TableService>();
     builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
     builder.Services.AddScoped<IReservationService, ReservationService>();
+
+    // Configure HttpClient for Kitchen API
+    var kitchenApiUrl = builder.Configuration["KitchenApi:BaseUrl"] ?? "http://localhost:5000";
+    builder.Services.AddHttpClient<IKitchenApiService, KitchenApiService>(client =>
+    {
+        client.BaseAddress = new Uri(kitchenApiUrl);
+        client.Timeout = TimeSpan.FromSeconds(30);
+    });
 
     // OpenTelemetry Configuration
     var serviceName = "Restaurant.WebApi";
