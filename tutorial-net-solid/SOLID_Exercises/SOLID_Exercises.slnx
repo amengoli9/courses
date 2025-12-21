@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Exercise1_SRP/Exercise1_SRP.csproj" />
+  <Project Path="Exercise2_OCP/Exercise2_OCP.csproj" />
+  <Project Path="Exercise3_LSP/Exercise3_LSP.csproj" />
+  <Project Path="Exercise4_ISP/Exercise4_ISP.csproj" />
+  <Project Path="Exercise5_DIP/Exercise5_DIP.csproj" />
+  <Project Path="Exercise6_Combined/Exercise6_Combined.csproj" />
+  <Project Path="Exercise7_CodeReview/Exercise7_CodeReview.csproj" />
+</Solution>
