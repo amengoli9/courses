@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="Exercise1_SRP/Exercise1_SRP.csproj" />
   <Project Path="Exercise2_OCP/Exercise2_OCP.csproj" />
+  <Project Path="Exercise3B_LSP/Exercise3B_LSP.csproj" Id="4302d51b-465c-4356-b31a-6c588b366de4" />
   <Project Path="Exercise3_LSP/Exercise3_LSP.csproj" />
   <Project Path="Exercise4_ISP/Exercise4_ISP.csproj" />
   <Project Path="Exercise5_DIP/Exercise5_DIP.csproj" />

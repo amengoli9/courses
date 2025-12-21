@@ -333,9 +333,9 @@ public class NorthPoleGiftProcessor
 
     public void ProcessGiftRequest(GiftRequest request)
     {
-        Console.WriteLine($"\n{'='}.PadRight(60, '=')}");
+        Console.WriteLine($"\n{'='}.PadRight(60, '=')");
         Console.WriteLine($"🎅 Processing Request for {request.ChildName}");
-        Console.WriteLine($"{'='}.PadRight(60, '=')}");
+        Console.WriteLine($"{'='}.PadRight(60, '=')");
 
         // Step 1: Calculate costs
         decimal giftsCost = request.RequestedGifts.Count * 20m; // $20 per gift (simplified)
@@ -383,7 +383,7 @@ public class NorthPoleGiftProcessor
         _notificationService.SendDeliveryNotification(request, deliveryDate);
 
         Console.WriteLine($"\n✅ Request processed successfully!");
-        Console.WriteLine($"{'='}.PadRight(60, '=')}");
+        Console.WriteLine($"{'='}.PadRight(60, '=')");
     }
 }
 
