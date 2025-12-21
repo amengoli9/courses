@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="DI_Problems/DI_Problems.csproj" />
+  <Project Path="SantaProblems/SantaProblems.csproj" Id="4871ddcb-49df-4693-a95c-2287076ec9b7" />
+  <Project Path="SantaRefactored/SantaRefactored.csproj" Id="6f9026ed-dba2-48b0-814e-0b205af7a6a8" />
+</Solution>
