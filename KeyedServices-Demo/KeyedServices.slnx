@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="BasicExample/BasicExample.csproj" />
+  <Project Path="NotificationService/NotificationService.csproj" />
+  <Project Path="PaymentGateway/PaymentGateway.csproj" />
+  <Project Path="DatabaseContext/DatabaseContext.csproj" />
+  <Project Path="ReportingService/ReportingService.csproj" />
+</Solution>
