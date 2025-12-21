@@ -1,3 +1,4 @@
+using Google.Protobuf.WellKnownTypes;
 using Menu.Utilities;
 using Microsoft.Extensions.Options;
 using OpenTelemetry;
@@ -6,6 +7,7 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
@@ -128,27 +130,46 @@ builder.Services.AddOpenTelemetry()
 //         );
 #endregion
 
-#region 5-ILoggingBuilderOTELProvider
-builder.Logging.ClearProviders();
-builder.Logging.AddOpenTelemetry(otel =>
-{
-   otel.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName: "MenuApp", serviceVersion: "1.0.0.0"));
-   otel.IncludeScopes = true;
-   otel.IncludeFormattedMessage = true;
-   otel.AddConsoleExporter();
-   otel.AddOtlpExporter();
-   otel.AddOtlpExporter((otlpOptions =>
-   {
-      otlpOptions.Endpoint = new Uri("http://localhost:5080/api/default/v1/logs");
-      otlpOptions.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
+//#region 5-ILoggingBuilderOTELProvider
+//builder.Logging.ClearProviders();
+//builder.Logging.AddOpenTelemetry(otel =>
+//{
+//   otel.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName: "MenuApp", serviceVersion: "1.0.0.0"));
+//   otel.IncludeScopes = true;
+//   otel.IncludeFormattedMessage = true;
+//   otel.AddConsoleExporter();
+//   otel.AddOtlpExporter();
+//   otel.AddOtlpExporter((otlpOptions =>
+//   {
+//      otlpOptions.Endpoint = new Uri("http://localhost:5080/api/default/v1/logs");
+//      otlpOptions.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf;
 
-      // Autenticazione Basic per OpenObserve
-      otlpOptions.Headers = "Authorization=Basic " +
-          Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("admin@example.com:Complexpass#123"));
-   }));
-}
-);
-#endregion
+//      // Autenticazione Basic per OpenObserve
+//      otlpOptions.Headers = "Authorization=Basic " +
+//          Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("admin@example.com:Complexpass#123"));
+//   }));
+//}
+//);
+//#endregion
+builder.Logging.ClearProviders();
+builder.Services.AddSerilog(conf =>
+{
+   conf.ReadFrom.Configuration(builder.Configuration);
+      conf.WriteTo.Console();
+      conf.WriteTo.OpenTelemetry();
+      conf.WriteTo.File(
+          path: ".",
+          rollingInterval: RollingInterval.Day,
+          outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}{NewLine}",
+          fileSizeLimitBytes: 10485760,
+          retainedFileCountLimit: 7,
+          rollOnFileSizeLimit: true,
+          shared: true,
+          flushToDiskInterval: TimeSpan.FromSeconds(1)
+      );
+});
+
+
 
 var app = builder.Build();
 

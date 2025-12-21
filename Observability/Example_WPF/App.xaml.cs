@@ -32,6 +32,7 @@ public partial class App : Application
                    cfg.AddSource("MyWpfApp.Activities") // ActivitySource custom
 
                      .AddHttpClientInstrumentation()
+                     .AddConsoleExporter()
                       .AddOtlpExporter();
                 })
                 .WithMetrics(b =>
@@ -39,6 +40,7 @@ public partial class App : Application
                    b.AddMeter("MyWpfApp.Metrics")
                             .AddRuntimeInstrumentation()
                             .AddProcessInstrumentation()
+                            .AddConsoleExporter()
                             .AddOtlpExporter();
                 });
          })
@@ -50,6 +52,7 @@ public partial class App : Application
             {
                o.IncludeFormattedMessage = true;
                o.IncludeScopes = true;
+               o.AddConsoleExporter();
                o.AddOtlpExporter();
             });
          })

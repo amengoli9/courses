@@ -1,0 +1,88 @@
+2025-11-03 10:32:22.931 +01:00 [INF] Now listening on: http://localhost:5152 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:32:23.049 +01:00 [INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:32:23.051 +01:00 [INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:32:23.053 +01:00 [INF] Content root path: D:\progetti\amengoli9\courses\Observability\Code\MenuApp {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:32:23.700 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/swagger/index.html - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRU:00000001","RequestPath":"/swagger/index.html","ConnectionId":"0HNGQNFID5QRU"}
+
+2025-11-03 10:32:23.840 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/swagger/index.html - 200 null text/html;charset=utf-8 160.5581ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRU:00000001","RequestPath":"/swagger/index.html","ConnectionId":"0HNGQNFID5QRU"}
+
+2025-11-03 10:32:23.844 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/_vs/browserLink - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRV:00000001","RequestPath":"/_vs/browserLink","ConnectionId":"0HNGQNFID5QRV"}
+
+2025-11-03 10:32:23.855 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/_framework/aspnetcore-browser-refresh.js - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRU:00000002","RequestPath":"/_framework/aspnetcore-browser-refresh.js","ConnectionId":"0HNGQNFID5QRU"}
+
+2025-11-03 10:32:23.864 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 9.3834ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRU:00000002","RequestPath":"/_framework/aspnetcore-browser-refresh.js","ConnectionId":"0HNGQNFID5QRU"}
+
+2025-11-03 10:32:23.885 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/_vs/browserLink - 200 null text/javascript; charset=UTF-8 42.9233ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRV:00000001","RequestPath":"/_vs/browserLink","ConnectionId":"0HNGQNFID5QRV"}
+
+2025-11-03 10:32:23.906 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/swagger/v1/swagger.json - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRV:00000002","RequestPath":"/swagger/v1/swagger.json","ConnectionId":"0HNGQNFID5QRV"}
+
+2025-11-03 10:32:23.915 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 9.3282ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNFID5QRV:00000002","RequestPath":"/swagger/v1/swagger.json","ConnectionId":"0HNGQNFID5QRV"}
+
+2025-11-03 10:42:00.089 +01:00 [INF] Now listening on: http://localhost:5152 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:42:00.214 +01:00 [INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:42:00.217 +01:00 [INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:42:00.221 +01:00 [INF] Content root path: D:\progetti\amengoli9\courses\Observability\Code\MenuApp {"SourceContext":"Microsoft.Hosting.Lifetime"}
+
+2025-11-03 10:42:00.880 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/swagger/index.html - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLS:00000001","RequestPath":"/swagger/index.html","ConnectionId":"0HNGQNKUDBBLS"}
+
+2025-11-03 10:42:01.039 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/swagger/index.html - 200 null text/html;charset=utf-8 184.4652ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLS:00000001","RequestPath":"/swagger/index.html","ConnectionId":"0HNGQNKUDBBLS"}
+
+2025-11-03 10:42:01.044 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/_vs/browserLink - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000001","RequestPath":"/_vs/browserLink","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:01.057 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/_framework/aspnetcore-browser-refresh.js - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLS:00000002","RequestPath":"/_framework/aspnetcore-browser-refresh.js","ConnectionId":"0HNGQNKUDBBLS"}
+
+2025-11-03 10:42:01.070 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 13.3739ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLS:00000002","RequestPath":"/_framework/aspnetcore-browser-refresh.js","ConnectionId":"0HNGQNKUDBBLS"}
+
+2025-11-03 10:42:01.093 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.1401ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000001","RequestPath":"/_vs/browserLink","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:01.121 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/swagger/v1/swagger.json - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000002","RequestPath":"/swagger/v1/swagger.json","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:01.128 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 7.9754ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000002","RequestPath":"/swagger/v1/swagger.json","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.543 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5152/Menu - null null {"EventId":{"Id":1},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.554 +01:00 [WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.558 +01:00 [INF] Executing endpoint 'MenuController.GetMenu (MenuApp)' {"EventId":{"Name":"ExecutingEndpoint"},"SourceContext":"Microsoft.AspNetCore.Routing.EndpointMiddleware","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.575 +01:00 [INF] Route matched with {action = "GetMenu", controller = "Menu"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMenu() on controller MenuController (MenuApp). {"EventId":{"Id":102,"Name":"ControllerActionExecuting"},"SourceContext":"Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.583 +01:00 [INF] Executing action method MenuController.GetMenu (MenuApp) - Validation state: "Valid" {"EventId":{"Id":101,"Name":"ActionMethodExecuting"},"SourceContext":"Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.590 +01:00 [INF] Saluti non strutturati da Ancona {"SourceContext":"MenuController","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.592 +01:00 [INF] Saluti da Ancona {"SourceContext":"MenuController","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:03.599 +01:00 [INF] Start processing HTTP request GET http://localhost:5678/Kitchen/dishes {"EventId":{"Id":100,"Name":"RequestPipelineStart"},"SourceContext":"System.Net.Http.HttpClient.Default.LogicalHandler","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/dishes"]}
+
+2025-11-03 10:42:03.604 +01:00 [INF] Sending HTTP request GET http://localhost:5678/Kitchen/dishes {"EventId":{"Id":100,"Name":"RequestStart"},"SourceContext":"System.Net.Http.HttpClient.Default.ClientHandler","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/dishes"]}
+
+2025-11-03 10:42:03.968 +01:00 [INF] Received HTTP response headers after 360.6815ms - 200 {"EventId":{"Id":101,"Name":"RequestEnd"},"SourceContext":"System.Net.Http.HttpClient.Default.ClientHandler","HttpMethod":"GET","Uri":"http://localhost:5678/Kitchen/dishes","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/dishes"]}
+
+2025-11-03 10:42:03.970 +01:00 [INF] End processing HTTP request after 374.3574ms - 200 {"EventId":{"Id":101,"Name":"RequestPipelineEnd"},"SourceContext":"System.Net.Http.HttpClient.Default.LogicalHandler","HttpMethod":"GET","Uri":"http://localhost:5678/Kitchen/dishes","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/dishes"]}
+
+2025-11-03 10:42:03.974 +01:00 [INF] Start processing HTTP request GET http://localhost:5678/Kitchen/drinks {"EventId":{"Id":100,"Name":"RequestPipelineStart"},"SourceContext":"System.Net.Http.HttpClient.Default.LogicalHandler","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/drinks"]}
+
+2025-11-03 10:42:03.976 +01:00 [INF] Sending HTTP request GET http://localhost:5678/Kitchen/drinks {"EventId":{"Id":100,"Name":"RequestStart"},"SourceContext":"System.Net.Http.HttpClient.Default.ClientHandler","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/drinks"]}
+
+2025-11-03 10:42:04.076 +01:00 [INF] Received HTTP response headers after 98.3754ms - 200 {"EventId":{"Id":101,"Name":"RequestEnd"},"SourceContext":"System.Net.Http.HttpClient.Default.ClientHandler","HttpMethod":"GET","Uri":"http://localhost:5678/Kitchen/drinks","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/drinks"]}
+
+2025-11-03 10:42:04.083 +01:00 [INF] End processing HTTP request after 108.8146ms - 200 {"EventId":{"Id":101,"Name":"RequestPipelineEnd"},"SourceContext":"System.Net.Http.HttpClient.Default.LogicalHandler","HttpMethod":"GET","Uri":"http://localhost:5678/Kitchen/drinks","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT","Scope":["HTTP GET http://localhost:5678/Kitchen/drinks"]}
+
+2025-11-03 10:42:04.096 +01:00 [INF] Executed action method MenuController.GetMenu (MenuApp), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 504.2818ms. {"EventId":{"Id":103,"Name":"ActionMethodExecuted"},"SourceContext":"Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:04.103 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`2[[System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. {"EventId":{"Id":1,"Name":"ObjectResultExecuting"},"SourceContext":"Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor","ActionId":"864a03f2-c188-4773-ab7a-68b180cf1c37","ActionName":"MenuController.GetMenu (MenuApp)","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:04.117 +01:00 [INF] Executed action MenuController.GetMenu (MenuApp) in 536.1852ms {"EventId":{"Id":105,"Name":"ActionExecuted"},"SourceContext":"Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:04.119 +01:00 [INF] Executed endpoint 'MenuController.GetMenu (MenuApp)' {"EventId":{"Id":1,"Name":"ExecutedEndpoint"},"SourceContext":"Microsoft.AspNetCore.Routing.EndpointMiddleware","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+
+2025-11-03 10:42:04.123 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5152/Menu - 200 null application/json; charset=utf-8 579.4787ms {"EventId":{"Id":2},"SourceContext":"Microsoft.AspNetCore.Hosting.Diagnostics","RequestId":"0HNGQNKUDBBLT:00000003","RequestPath":"/Menu","ConnectionId":"0HNGQNKUDBBLT"}
+

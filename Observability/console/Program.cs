@@ -38,6 +38,7 @@ class Program
                 .AddService(serviceName: "ConsoleApp", serviceVersion: "1.0.0"))
             .AddSource(ActivitySource.Name)
             .AddHttpClientInstrumentation()
+            .AddConsoleExporter()
             .AddOtlpExporter()
             .Build();
 
@@ -45,6 +46,7 @@ class Program
             .SetResourceBuilder(ResourceBuilder.CreateDefault()
                 .AddService(serviceName: "ConsoleApp", serviceVersion: "1.0.0"))
             .AddMeter(Meter.Name)
+            .AddConsoleExporter()
             .AddRuntimeInstrumentation()
             .AddOtlpExporter()
             .Build();
@@ -55,6 +57,7 @@ class Program
          {
             options.SetResourceBuilder(ResourceBuilder.CreateDefault()
                 .AddService(serviceName: "ConsoleApp", serviceVersion: "1.0.0"));
+            options.AddConsoleExporter();
             options.AddOtlpExporter();
             options.IncludeFormattedMessage = true;
             options.IncludeScopes = true;
