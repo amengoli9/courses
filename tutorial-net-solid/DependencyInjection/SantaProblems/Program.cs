@@ -5,9 +5,7 @@ using System.Linq;
 namespace SantasWorkshop
 {
     /// <summary>
-    /// QUESTA CLASSE FA TUTTO! 
-    /// Gestisce elfi, giocattoli, consegne, inventario, lettere dei bambini,
-    /// renne, slitta, logistica... Un vero incubo natalizio! 🎅💥
+    /// Gestisce elfi, giocattoli, consegne, inventario, lettere dei bambini, renne, slitta, logistica... 
     /// </summary>
     public class WorkshopManager
     {
@@ -16,13 +14,11 @@ namespace SantasWorkshop
         private int elfEnergy = 100;
         private int reindeerCount = 9;
 
-        // Metodo gigantesco che fa TUTTO - viola Single Responsibility
         public void ProcessChristmasLetter(string childName, int age, string behavior,
             string toyType, string country, bool isChristmasEve)
         {
             Console.WriteLine($"\n📨 Lettera ricevuta da {childName}!");
 
-            // Verifica comportamento del bambino (hardcoded)
             bool isNaughty = false;
             if (behavior == "Cattivo")
             {
@@ -33,7 +29,6 @@ namespace SantasWorkshop
             else if (behavior == "Birichino")
             {
                 Console.WriteLine($"⚠️ {childName} è stato birichino... valutazione in corso");
-                // Logica complessa inline
                 if (age < 6)
                 {
                     Console.WriteLine("È piccolo, gli diamo una possibilità!");
@@ -45,7 +40,6 @@ namespace SantasWorkshop
                 }
             }
 
-            // Calcola complessità del giocattolo - logica hardcoded (viola Open/Closed)
             int productionTime = 0;
             int materialsNeeded = 0;
 
@@ -86,7 +80,6 @@ namespace SantasWorkshop
                 Console.WriteLine("🎁 Giocattolo generico");
             }
 
-            // Assegna elfi in base al paese - logica rigida (viola Open/Closed)
             string assignedElf = "";
             if (country == "Italia")
             {
@@ -109,7 +102,6 @@ namespace SantasWorkshop
                 Console.WriteLine("🧝 Elfo generico Buddy assegnato!");
             }
 
-            // Controlla energia elfi
             elfEnergy -= productionTime;
             if (elfEnergy < 20)
             {
@@ -118,7 +110,6 @@ namespace SantasWorkshop
                 Console.WriteLine("🍪 Elfi hanno mangiato biscotti! Energia ripristinata!");
             }
 
-            // Priorità consegna - logica complessa inline
             int priority = 0;
             if (isChristmasEve)
             {
@@ -163,7 +154,7 @@ namespace SantasWorkshop
             };
             children.Add(child);
 
-            // Invia notifica diretta - accoppiamento stretto (viola Dependency Inversion)
+            // Invia notifica diretta 
             Console.WriteLine("\n📧 === NOTIFICA VIA EMAIL ===");
             Console.WriteLine($"A: santa@northpole.com");
             Console.WriteLine($"Oggetto: Nuovo ordine #{toys.Count}");
@@ -172,14 +163,11 @@ namespace SantasWorkshop
             Console.WriteLine($"Elfo: {assignedElf}");
             Console.WriteLine("============================\n");
 
-            // Aggiorna database diretto - accoppiamento stretto
             Console.WriteLine($"[NorthPoleDB] INSERT INTO Productions (child, toy, elf) VALUES ('{childName}', '{toyType}', '{assignedElf}')");
 
-            // Log su file (hardcoded)
             Console.WriteLine($"[LOG FILE] {DateTime.Now}: Produzione avviata per {childName}");
         }
 
-        // Metodo che cambia comportamento in base al tipo - viola Liskov Substitution
         public void DeliverPresent(string deliveryType, int toyIndex)
         {
             if (toyIndex >= toys.Count)
@@ -190,7 +178,6 @@ namespace SantasWorkshop
 
             var toy = toys[toyIndex];
 
-            // Comportamento COMPLETAMENTE diverso in base al tipo
             if (deliveryType == "Slitta")
             {
                 // Consegna tradizionale con renne
@@ -235,8 +222,6 @@ namespace SantasWorkshop
             }
         }
 
-        // Interfaccia grassa - viola Interface Segregation
-        // Metodi che solo alcuni client useranno
 
         public void FeedReindeer()
         {
@@ -274,7 +259,6 @@ namespace SantasWorkshop
             Console.WriteLine("🛰️ Satelliti GPS aggiornati");
         }
 
-        // Dipendenze concrete hardcoded - viola Dependency Inversion
         public void SaveToNorthPoleDatabase()
         {
             // Accoppiamento diretto a un database specifico
