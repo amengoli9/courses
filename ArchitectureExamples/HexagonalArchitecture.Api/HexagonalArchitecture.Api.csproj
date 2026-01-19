@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HexagonalArchitecture.Application\HexagonalArchitecture.Application.csproj" />
+    <ProjectReference Include="..\HexagonalArchitecture.Domain\HexagonalArchitecture.Domain.csproj" />
     <ProjectReference Include="..\HexagonalArchitecture.Infrastructure\HexagonalArchitecture.Infrastructure.csproj" />
   </ItemGroup>
 

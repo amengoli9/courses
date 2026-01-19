@@ -4,12 +4,13 @@
 
 L'Architettura Esagonale, anche chiamata **Ports & Adapters**, è un pattern architetturale che mette il **dominio al centro** dell'applicazione, isolandolo completamente dai dettagli tecnici esterni.
 
+**Caratteristica distintiva**: L'architettura esagonale ha **solo 3 layer** (Domain, Infrastructure, Api), mentre la Clean Architecture ne ha 4 (Domain, Application, Infrastructure, Presentation). Questo la rende più semplice e diretta.
+
 ## Concetti Chiave
 
 ### 🔷 Esagono (Hexagon)
 Il nucleo dell'applicazione che contiene:
-- **Domain**: Entità di business e logica di dominio
-- **Application**: Casi d'uso e servizi applicativi
+- **Domain**: Entità di business, logica di dominio e definizione delle Porte (Ports)
 
 ### 🔌 Porte (Ports)
 Interfacce **definite dal dominio** che specificano COSA serve all'applicazione:
@@ -25,21 +26,18 @@ Implementazioni **concrete** che specificano COME funzionano le porte:
 
 ```
 HexagonalArchitecture.Domain/          # NUCLEO - Non dipende da nulla
-├── Order.cs                            # Entità del dominio
+├── Order.cs                            # Entità del dominio con logica di business
 └── Ports/                              # Interfacce definite dal dominio
     ├── IOrderRepository.cs
     └── INotificationService.cs
 
-HexagonalArchitecture.Application/     # Casi d'uso
-└── OrderService.cs                     # Coordina le operazioni
-
 HexagonalArchitecture.Infrastructure/  # ADAPTER - Dettagli tecnici
 └── Adapters/
-    ├── InMemoryOrderRepository.cs      # Implementazione concreta
-    └── ConsoleNotificationService.cs   # Implementazione concreta
+    ├── InMemoryOrderRepository.cs      # Implementazione concreta della porta
+    └── ConsoleNotificationService.cs   # Implementazione concreta della porta
 
-HexagonalArchitecture.Api/             # Entry point
-└── Program.cs                          # Wiring delle dipendenze
+HexagonalArchitecture.Api/             # DRIVER ADAPTER - Entry point
+└── Program.cs                          # Wiring e coordinamento dei casi d'uso
 ```
 
 ## Vantaggi
@@ -52,12 +50,12 @@ HexagonalArchitecture.Api/             # Entry point
 ## Regole di Dipendenza
 
 ```
-Infrastructure → Application → Domain
+Infrastructure → Domain
      ↑              ↑
      └──────────────┴──── Api
 ```
 
-- Il **Domain** non dipende da nessuno
-- L'**Application** dipende solo dal Domain
-- L'**Infrastructure** implementa le porte del Domain
-- L'**Api** conosce tutto e fa il wiring
+- Il **Domain** non dipende da nessuno (è il centro dell'esagono)
+- L'**Infrastructure** implementa le porte del Domain (driven adapters)
+- L'**Api** usa le porte del Domain e gli adapter dell'Infrastructure (driver adapter)
+- **Nota**: A differenza della Clean Architecture, non c'è un layer Application separato - i casi d'uso sono coordinati direttamente dall'Api usando le porte del Domain

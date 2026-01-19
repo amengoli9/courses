@@ -7,27 +7,14 @@ namespace ArchitectureTests;
 /// FITNESS FUNCTIONS per l'Architettura Esagonale
 /// Questi test verificano che le regole architetturali siano rispettate
 /// Se la struttura viola le regole, i test falliscono
+/// Nota: L'architettura esagonale ha solo 3 layer (Domain, Infrastructure, Api)
+/// mentre la Clean Architecture ne ha 4 (Domain, Application, Infrastructure, Presentation)
 /// </summary>
 public class HexagonalArchitectureTests
 {
     private const string DomainNamespace = "HexagonalArchitecture.Domain";
-    private const string ApplicationNamespace = "HexagonalArchitecture.Application";
     private const string InfrastructureNamespace = "HexagonalArchitecture.Infrastructure";
     private const string ApiNamespace = "HexagonalArchitecture.Api";
-
-    [Fact]
-    public void Domain_Should_Not_Depend_On_Application()
-    {
-        // REGOLA: Il Domain non deve dipendere dall'Application
-        var result = Types.InAssembly(typeof(HexagonalArchitecture.Domain.Order).Assembly)
-            .That()
-            .ResideInNamespace(DomainNamespace)
-            .ShouldNot()
-            .HaveDependencyOn(ApplicationNamespace)
-            .GetResult();
-
-        Assert.True(result.IsSuccessful, "Domain non deve dipendere da Application!");
-    }
 
     [Fact]
     public void Domain_Should_Not_Depend_On_Infrastructure()
@@ -55,35 +42,6 @@ public class HexagonalArchitectureTests
             .GetResult();
 
         Assert.True(result.IsSuccessful, "Domain non deve dipendere da Api!");
-    }
-
-    [Fact]
-    public void Application_Should_Not_Depend_On_Infrastructure()
-    {
-        // REGOLA: Application non deve dipendere da Infrastructure
-        // Application deve dipendere solo da Domain (tramite le Ports)
-        var result = Types.InAssembly(typeof(HexagonalArchitecture.Application.OrderService).Assembly)
-            .That()
-            .ResideInNamespace(ApplicationNamespace)
-            .ShouldNot()
-            .HaveDependencyOn(InfrastructureNamespace)
-            .GetResult();
-
-        Assert.True(result.IsSuccessful, "Application non deve dipendere da Infrastructure!");
-    }
-
-    [Fact]
-    public void Application_Should_Not_Depend_On_Api()
-    {
-        // REGOLA: Application non deve dipendere dall'Api
-        var result = Types.InAssembly(typeof(HexagonalArchitecture.Application.OrderService).Assembly)
-            .That()
-            .ResideInNamespace(ApplicationNamespace)
-            .ShouldNot()
-            .HaveDependencyOn(ApiNamespace)
-            .GetResult();
-
-        Assert.True(result.IsSuccessful, "Application non deve dipendere da Api!");
     }
 
     [Fact]
