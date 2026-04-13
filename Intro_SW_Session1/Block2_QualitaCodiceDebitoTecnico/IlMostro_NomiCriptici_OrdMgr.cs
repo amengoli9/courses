@@ -3,16 +3,11 @@
 // Sezione 2.1 — Cosa rende il codice "di qualità"
 //
 // IL MOSTRO — Versione con nomi criptici
-// Logica IDENTICA a IlMostro_GestoreOrdini.cs, ma con nomi
-// abbreviati e privi di significato.
 //
-// Esercizio per la sala: cosa fa questo metodo?
+// Esercizio: cosa fa questo metodo?
 // Cosa sono tc, pl, cp, v, p, bf?
 // Quali valori può avere tc? Cosa significa s = t * 0.15?
 //
-// Nota: nella versione con nomi leggibili molte cose diventano
-// ovvie anche senza toccare la logica. Il naming è la singola
-// modifica a costo zero con il maggior impatto sulla leggibilità.
 // ===================================================================
 
 using Intro_SW_Session1.Models;
